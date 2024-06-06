@@ -8,7 +8,6 @@
 import UIKit
 
 
-//User, User Item List, Favorite, items Count
 class ProfileViewController: UIViewController {
     
     private var viewModel = ProfileViewModel()
@@ -26,14 +25,15 @@ class ProfileViewController: UIViewController {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.layer.cornerRadius = 38
         iv.layer.masksToBounds = true
-        iv.image = UIImage(systemName: "person.circle")
         return iv
     }()
     
-    private let favoriteButton: UIButton = {
+    private lazy var favoriteButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        button.addAction(UIAction(handler: { [weak self] _ in
+            self?.favoriteTapped()
+        }), for: .touchUpInside)
         return button
     }()
     
@@ -47,21 +47,19 @@ class ProfileViewController: UIViewController {
     
     private let nickNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ruel"
         label.font = .boldSystemFont(ofSize: 19)
         return label
     }()
     
     private let tagLabel: UILabel = {
-       let label = UILabel()
-        label.text = "#건조 #수부지 #민감성 #홍조"
+        let label = UILabel()
         label.textColor = .lightGray
         label.font = .systemFont(ofSize: 10)
         return label
     }()
     
     private let cosmeticsStackView: UIStackView = {
-       let sv = UIStackView()
+        let sv = UIStackView()
         sv.axis = .horizontal
         sv.alignment = .leading
         sv.spacing = 10
@@ -71,7 +69,6 @@ class ProfileViewController: UIViewController {
     
     private let refrigeratorButton: UIButton = {
         let button = UIButton()
-        button.setTitle("냉장고 0", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 10)
         button.setTitleColor(.black, for: .normal)
         return button
@@ -79,14 +76,13 @@ class ProfileViewController: UIViewController {
     
     private let tombButton: UIButton = {
         let button = UIButton()
-        button.setTitle("무덤 0", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 10)
         button.setTitleColor(.black, for: .normal)
         return button
     }()
     
     private let emptyView: UIView = {
-       let view = UIView()
+        let view = UIView()
         return view
     }()
     
@@ -107,7 +103,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private lazy var cosmeticsTV: UITableView = {
-       let tv = UITableView()
+        let tv = UITableView()
         tv.translatesAutoresizingMaskIntoConstraints = false
         tv.dataSource = self
         tv.delegate = self
@@ -121,6 +117,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureDataSetup()
+        
         
         categorySelectedIndex = IndexPath(row: 0, section: 0)
         categoryCV.selectItem(at: categorySelectedIndex, animated: false, scrollPosition: .left)
@@ -191,6 +189,48 @@ class ProfileViewController: UIViewController {
             cosmeticsTV.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             cosmeticsTV.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        
+        
+        
+    }
+    
+    private func configureDataSetup() {
+        profileImageView.image = UIImage(named: viewModel.getUserImage())
+        nickNameLabel.text = viewModel.getUserName()
+        
+        tombButton.setAttributedTitle(self.attributeButtonText(title: "무덤: ", count: viewModel.getUserTombCount()), for: .normal)
+        refrigeratorButton.setAttributedTitle(self.attributeButtonText(title: "냉장고: ", count: viewModel.getUserRefrigeratorCount()), for: .normal)
+        
+        tagLabel.text = viewModel.getUserHashTag()
+        
+        favoriteButtonSetup()
+    }
+    
+    private func favoriteButtonSetup() {
+        let favoriteImage = viewModel.userIsFavorite() ? "bookMark.fill" : "bookMark"
+        favoriteButton.setImage(UIImage(named: favoriteImage), for: .normal)
+    }
+    
+    @objc private func favoriteTapped() {
+        viewModel.changeFavorite { [weak self] in
+            self?.favoriteButtonSetup()
+        }
+    }
+    
+    
+    private func attributeButtonText(title: String, count: Int) -> NSAttributedString{
+        let normalAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.systemFont(ofSize: 10)
+        ]
+        let boldAttributes: [NSAttributedString.Key: Any] = [
+            .font: UIFont.boldSystemFont(ofSize: 10)
+        ]
+        
+        let attributedString = NSMutableAttributedString(string: title, attributes: normalAttributes)
+        let countString = NSAttributedString(string: "\(count)", attributes: boldAttributes)
+        
+        attributedString.append(countString)
+        return attributedString
     }
     
 }
@@ -205,13 +245,13 @@ extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataS
             
             let category = viewModel.getCategoryItem(index: indexPath.row)
             cell.configureCell(category: category)
-            
             cell.isSelected = (indexPath == categorySelectedIndex)
+            
             return cell
         }
         return UICollectionViewCell()
     }
- 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         viewModel.getSectionCosmetic(caseType: indexPath.row) {
             self.cosmeticsTV.reloadData()
@@ -236,6 +276,4 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
         }
         return UITableViewCell()
     }
-    
-    
 }

@@ -20,10 +20,8 @@ class CosmeticsTVCell: UITableViewCell {
     private let cosmaticsImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-//        iv.image = UIImage(systemName: "waterbottle")
         return iv
     }()
-    
     
     private let mainStackView: UIStackView = {
         let sv = UIStackView()
@@ -37,7 +35,6 @@ class CosmeticsTVCell: UITableViewCell {
     
     let cosmeticLabel: UILabel = {
         let label = UILabel()
-//        label.text = "로션"
         label.textColor = .black
         label.font = .systemFont(ofSize: 20)
         return label
@@ -53,13 +50,11 @@ class CosmeticsTVCell: UITableViewCell {
     
     let purchaseDateLabel: UILabel = {
        let label = UILabel()
-//        label.text = "구매날짜: \(Date())"
         return label
     }()
     
     let expirationDateLabel: UILabel = {
         let label = UILabel()
-//        label.text = "유통기한: \(Date())"
         return label
     }()
     
