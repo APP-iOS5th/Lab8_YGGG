@@ -7,19 +7,11 @@
 
 import UIKit
 
-struct TopCategory {
-    let imageName: String
-    let title: String
-}
+
 //User, User Item List, Favorite, items Count
 class ProfileViewController: UIViewController {
     
-    var topCategorys: [TopCategory] = [
-        TopCategory(imageName: "allmenu", title: "전체"),
-        TopCategory(imageName: "snowflake", title: "냉동"),
-        TopCategory(imageName: "fridge", title: "냉장"),
-        TopCategory(imageName: "body", title: "실온")
-    ]
+    private var viewModel = ProfileViewModel()
     
     var categorySelectedIndex: IndexPath?
     
@@ -205,35 +197,41 @@ class ProfileViewController: UIViewController {
 
 extension ProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource  {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return topCategorys.count
+        return viewModel.topCateogoryCount()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CategoryCVCell", for: indexPath) as? CategoryCVCell {
-            cell.configureCell(category: topCategorys[indexPath.row])
+            
+            let category = viewModel.getCategoryItem(index: indexPath.row)
+            cell.configureCell(category: category)
+            
             cell.isSelected = (indexPath == categorySelectedIndex)
             return cell
         }
         return UICollectionViewCell()
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        self.categorySelectedIndex = indexPath
-//        collectionView.reloadData()
-//    }
-
+ 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        viewModel.getSectionCosmetic(caseType: indexPath.row) {
+            self.cosmeticsTV.reloadData()
+        }
+    }
     
 }
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.viewModel.cosmeticsCount()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CosmeticsTVCell", for: indexPath) as? CosmeticsTVCell {
-            cell.configureUI()
+            
+            let cosmetic = viewModel.getCosmetic(index: indexPath.row)
+            cell.configureCell(cosmetic: cosmetic)
+            
             return cell
         }
         return UITableViewCell()

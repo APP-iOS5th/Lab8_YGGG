@@ -25,6 +25,7 @@
 		41EB8EE32C109CB7001DBF2A /* CosmeticsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8EE22C109CB7001DBF2A /* CosmeticsTVCell.swift */; };
 		41EB8EE52C10A217001DBF2A /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8EE42C10A217001DBF2A /* CategoryCVCell.swift */; };
 		41EB8EF62C10BBBF001DBF2A /* Extension+UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8EF52C10BBBF001DBF2A /* Extension+UIColor.swift */; };
+		41EB8F082C1196BA001DBF2A /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8F072C1196BA001DBF2A /* ProfileViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		41EB8EE22C109CB7001DBF2A /* CosmeticsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmeticsTVCell.swift; sourceTree = "<group>"; };
 		41EB8EE42C10A217001DBF2A /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
 		41EB8EF52C10BBBF001DBF2A /* Extension+UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIColor.swift"; sourceTree = "<group>"; };
+		41EB8F072C1196BA001DBF2A /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				41EB8EE02C108B05001DBF2A /* ProfileViewController.swift */,
 				41EB8EE22C109CB7001DBF2A /* CosmeticsTVCell.swift */,
 				41EB8EE42C10A217001DBF2A /* CategoryCVCell.swift */,
+				41EB8F072C1196BA001DBF2A /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				41CCE8662C0EC83300A09411 /* AppDelegate.swift in Sources */,
 				41EB8EE12C108B05001DBF2A /* ProfileViewController.swift in Sources */,
 				41CCE8682C0EC83300A09411 /* SceneDelegate.swift in Sources */,
+				41EB8F082C1196BA001DBF2A /* ProfileViewModel.swift in Sources */,
 				41EB8EE32C109CB7001DBF2A /* CosmeticsTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
