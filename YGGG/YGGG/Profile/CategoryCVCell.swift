@@ -37,7 +37,6 @@ class CategoryCVCell: UICollectionViewCell {
         didSet {
             mainView.backgroundColor = isSelected ? UIColor.yggg_peach : UIColor.yggg_gray
         }
-        
     }
     
     func configureCell(category: TopCategory) {

@@ -20,10 +20,8 @@ class CosmeticsTVCell: UITableViewCell {
     private let cosmaticsImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.image = UIImage(systemName: "waterbottle")
         return iv
     }()
-    
     
     private let mainStackView: UIStackView = {
         let sv = UIStackView()
@@ -37,7 +35,6 @@ class CosmeticsTVCell: UITableViewCell {
     
     let cosmeticLabel: UILabel = {
         let label = UILabel()
-        label.text = "로션"
         label.textColor = .black
         label.font = .systemFont(ofSize: 20)
         return label
@@ -51,15 +48,13 @@ class CosmeticsTVCell: UITableViewCell {
         return sv
     }()
     
-    let purchaseDataLabel: UILabel = {
+    let purchaseDateLabel: UILabel = {
        let label = UILabel()
-        label.text = "구매날짜: \(Date())"
         return label
     }()
     
     let expirationDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "유통기한: \(Date())"
         return label
     }()
     
@@ -67,6 +62,7 @@ class CosmeticsTVCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
+        configureUI()
     }
     
     required init?(coder: NSCoder) {
@@ -102,7 +98,7 @@ class CosmeticsTVCell: UITableViewCell {
             mainStackView.addArrangedSubview($0)
         }
         
-        [purchaseDataLabel, expirationDateLabel].forEach {
+        [purchaseDateLabel, expirationDateLabel].forEach {
             dateStackView.addArrangedSubview($0)
         }
         
@@ -113,6 +109,25 @@ class CosmeticsTVCell: UITableViewCell {
             mainStackView.bottomAnchor.constraint(equalTo: mainView.bottomAnchor, constant: -15)
         ])
         
+    }
+    
+    
+    func configureCell(cosmetic: Cosmetics) {
+        
+        let image: UIImage?
+        if cosmetic.isExpired {
+            image = UIImage(systemName: cosmetic.imageName)?.withRenderingMode(.alwaysTemplate)
+            cosmaticsImageView.tintColor = UIColor.gray
+        } else {
+            image = UIImage(systemName: cosmetic.imageName)?.withRenderingMode(.alwaysOriginal)
+            cosmaticsImageView.tintColor = nil
+        }
+        
+        cosmaticsImageView.image = image
+        
+        cosmeticLabel.text = cosmetic.title
+        purchaseDateLabel.text = "구매날짜: \(cosmetic.purchaseString)"
+        expirationDateLabel.text = "유통기한: \(cosmetic.expirationString)"
     }
     
 }

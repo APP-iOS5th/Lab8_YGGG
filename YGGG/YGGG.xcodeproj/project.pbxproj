@@ -21,6 +21,7 @@
 		41CCE8872C0ECA6000A09411 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 41CCE8862C0ECA6000A09411 /* FirebaseFirestoreCombine-Community */; };
 		41CCE8892C0ECA6000A09411 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 41CCE8882C0ECA6000A09411 /* FirebaseFirestoreSwift */; };
 		41CCE88B2C0ECA6000A09411 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 41CCE88A2C0ECA6000A09411 /* FirebaseMessaging */; };
+		41D845592C11DBF70025ED4C /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D845582C11DBF70025ED4C /* ProfileViewModel.swift */; };
 		41EB8EE12C108B05001DBF2A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8EE02C108B05001DBF2A /* ProfileViewController.swift */; };
 		41EB8EE32C109CB7001DBF2A /* CosmeticsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8EE22C109CB7001DBF2A /* CosmeticsTVCell.swift */; };
 		41EB8EE52C10A217001DBF2A /* CategoryCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41EB8EE42C10A217001DBF2A /* CategoryCVCell.swift */; };
@@ -36,6 +37,7 @@
 		41CCE8712C0EC83400A09411 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		41CCE8732C0EC83400A09411 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41CCE8792C0EC9FD00A09411 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		41D845582C11DBF70025ED4C /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		41EB8EE02C108B05001DBF2A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		41EB8EE22C109CB7001DBF2A /* CosmeticsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmeticsTVCell.swift; sourceTree = "<group>"; };
 		41EB8EE42C10A217001DBF2A /* CategoryCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCVCell.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				41EB8EE02C108B05001DBF2A /* ProfileViewController.swift */,
 				41EB8EE22C109CB7001DBF2A /* CosmeticsTVCell.swift */,
 				41EB8EE42C10A217001DBF2A /* CategoryCVCell.swift */,
+				41D845582C11DBF70025ED4C /* ProfileViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				41CCE8662C0EC83300A09411 /* AppDelegate.swift in Sources */,
 				41EB8EE12C108B05001DBF2A /* ProfileViewController.swift in Sources */,
 				41CCE8682C0EC83300A09411 /* SceneDelegate.swift in Sources */,
+				41D845592C11DBF70025ED4C /* ProfileViewModel.swift in Sources */,
 				41EB8EE32C109CB7001DBF2A /* CosmeticsTVCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
